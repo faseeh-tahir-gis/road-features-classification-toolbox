@@ -1,0 +1,14 @@
+# Python packages for Road_Features_Classification.pyt
+#
+# The tool runs inside ArcMap 10.8, which uses its own Python 2.7 interpreter.
+# ArcPy is installed with ArcGIS Desktop and cannot be installed with pip.
+#
+# Both packages below are optional. The tool still runs without them.
+#
+# reportlab: needed for the PDF report. Without it the tool writes a plain-text report.
+reportlab
+#
+# matplotlib and numpy: needed for the five report charts.
+# 2.2.5 is the last matplotlib release that supports Python 2.7.
+matplotlib==2.2.5
+numpy

@@ -1,0 +1,11 @@
+# Tell GitHub that ArcGIS Python Toolbox files are Python,
+# so the repository's Languages bar shows Python.
+*.pyt linguist-language=Python
+
+# Keep reports, figures and documents out of the language statistics.
+*.docx linguist-documentation
+*.txt linguist-documentation
+*.xml linguist-documentation
+docs/** linguist-documentation
+reports/** linguist-documentation
+internship/** linguist-documentation

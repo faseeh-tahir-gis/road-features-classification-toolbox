@@ -1,0 +1,176 @@
+==============================================================================
+FINAL STATISTICAL SUMMARY - NHA REFERENCE vs OSM
+Survey of Pakistan - Road Features Classification Project
+Source geodatabase: D:\Internship\Survey Of Pakistan\Task 1\Python ToolBox\Test 10\New File Geodatabase.gdb
+==============================================================================
+
+------------------------------------------------------------------------------
+0. SCOPE STATEMENT
+------------------------------------------------------------------------------
+This report covers 121 NHA reference features in total. Of these, 78 (Motorway + National Highway) fall within the Motorway/National-Highway comparison scope used by Sections 2-10 and 12; the remaining 43 are Strategic roads or Features Requiring Classification Review and are excluded from that comparison (see Section 1 for the breakdown and reasons). Section 11 (positional accuracy) is the one exception and is built from all 121 features. Wherever a percentage appears below, its denominator is stated alongside it (e.g. 'X / 78', 'X / 121', 'X of 20 Motorways') - always check the stated denominator before comparing percentages across sections (review item #29).
+
+------------------------------------------------------------------------------
+1. DATASET INVENTORY AND BASELINE STATISTICS
+------------------------------------------------------------------------------
+Units: Meter
+NHA reference features (total): 121  (total length: 22537528.8 Meter)
+  NHA Motorway: 20 features, 2722116.0 Meter
+  NHA National Highway: 58 features, 10118778.1 Meter
+  NHA Strategic: 3 features, 258793.1 Meter [excluded from X05/Classification_Summary - see notes below]
+  NHA Features Requiring Classification Review: 40 features, 9437841.6 Meter [excluded from X05/Classification_Summary - see notes below]
+Note: 43 of the 121 total NHA features (9696634.7 Meter of length) are Strategic roads and/or Features Requiring Classification Review (no confident NHA_Class prefix match) and are intentionally out of scope for the Motorway/National-Highway comparison in Sections 2-10 and 12 below; see the module docstring 'OUTPUT SCOPE' for the rule. This is why Sections 2-10 and 12 use a denominator of 78 (the scope-restricted count), while Section 11 (built directly from X01_NHA_Prepared) uses the full 121.
+  Strategic (S-series) features excluded by design (not National Highway, per explicit rule): S-1 (Gilgit to Skardu) (OID 32), S-2 (Kohala - Muzaffarabad) (OID 33), S-3 (Muzaffarabad - Chakothi) (OID 34)
+  Features Requiring Classification Review: 40 features. Reason breakdown:
+    - No Name-based classification rule matched (missing/ambiguous route-code prefix or unrecognised named route): 40
+    Unresolved feature list (Name (Source OID)): Line of Control in J&K (1), Central Alignment (2), Northern Alignment (3), Western Alignment (4), Eastern Alignment (5), Metro Islamabad (63), Jaglot-Sakardu (S-1) (64), Chakdara-Fatehpur (N-95) (65), Muzzafargarh-Dera Ghazi Khan N-70 (66), Rehab Raikot- Thakot (67), Zhob-Yarik N-50 (68), Khuzdar-Basima (N-30) (69), Qila Saifullah-Waigum Rud (N-70) (70), Khuzdar-Quetta-Chaman (N-25) (71), Zhob-Mughalkot (N-50) (72), Rakhi Gaaj Bewata (73), Yackmuch - Kharan (200 km) (75), Kohat-Sarai Ghambila (76), Bannu - Gaandi Chowk (34 Km) (77), Old Bannu Road(Dualization and Rehabilitation) 83 km (78), Kohat – Jand – Pindi Gheb(73 km) (79), Petaro – Sehwan (N-55)(130 km) (80), Thokar Niaz Baig – Hudiara Drain(Improvement and Widening) (11 km) (81), Lyari Expressway (82), Peshawar Northern Bypass (83), CPEC (Mansehra -Thakot Section) (90), E-35 (Burhan - Havelian) (101), Hakla - D.I. KhanYarak – Rehmani Khel (Pkg-I) (102), Hakla - D.I. Khan Pkg-III Mianwali - Tarap Pkg III (103), Hakla - D.I. Khan Pkg-IVTarap - Pindi Gheb Pkg-IV (104), Sialkot - Lahore Motorway (SLM) (105), Hakla - D.I. Khan Pkg-IIRehmani Khel-Mianwali Pkg II (106), Islamabad-Lahore M-2 (107), Islamabad-Peshawar (108), Peshawar-Islamabad (114), E-35 (Burhan -Shah Maqsood Iterchange) (115), E-35 (Shah Maqsood Interchange- Havelian) (116), Hakla - D.I. Khan Pkg-VPindi Gheb-Hakla Pkg V (117), Swat Expressway (120), E-35 (Havelian-Mansehra) (121)
+
+OSM candidate features (total, pre-filtered scope): 6899 (total length: 20322813.8 Meter)
+  OSM Motorway: 1358 features, 2820551.1 Meter
+  OSM Trunk: 4231 features, 12014360.5 Meter
+  OSM Primary: 1310 features, 5487902.2 Meter
+Note: OSM figures reflect the pre-filtered OSM working copy (fclass in motorway, motorway_link, trunk, trunk_link, primary, primary_link), not the full original OSM dataset.
+[Figure 1 - NHA Reference Dataset Composition -- saved as PNG/PDF/SVG: D:\Internship\Survey Of Pakistan\Task 1\Python ToolBox\Test 10\charts\Figure_01_NHA_Dataset_Composition.(png|pdf|svg)]
+
+------------------------------------------------------------------------------
+2. NAME AND ATTRIBUTE MATCHING
+------------------------------------------------------------------------------
+Exact Match: 2  (2.6%)
+Partial/Similar: 72  (92.3%)
+No Attribute Match: 2  (2.6%)
+NHA Reference Features Without a Corresponding OSM Feature: 2  (2.6%)
+Total assessed: 78
+Note: name/route-code matching (Exact Match / Partial/Similar) is supporting evidence only, per Section A.3.1 of the tool configuration - it can upgrade a spatial match's confidence but is never by itself proof that two geometries represent the same road (review item #17). 'Exact Match' requires the normalised route code (see extract_route_code(): uppercased, whitespace/hyphens stripped) to match identically between NHA Name and OSM ref/name. 'Partial/Similar' is everything else that still has a class-based spatial match (Match_Status Matched/Multiple) without that exact code match - it is NOT currently based on fuzzy/normalized name similarity, only on the presence vs. absence of the exact route-code confirmation (review item #18).
+[Figure 2 - NHA-OSM Attribute and Name Agreement -- saved as PNG/PDF/SVG: D:\Internship\Survey Of Pakistan\Task 1\Python ToolBox\Test 10\charts\Figure_02_NHA_OSM_Attribute_Name_Agreement.(png|pdf|svg)]
+
+------------------------------------------------------------------------------
+3. GEOGRAPHIC/SPATIAL MATCHING
+------------------------------------------------------------------------------
+Overlap tolerance: 5 Meters | Partial-overlap threshold: 10% of NHA length
+Overlapping: 1  (1.3%)
+Partially Overlapping: 17  (21.8%)
+Spatially Proximate, Non-overlapping: 58  (74.4%)
+NHA Reference Features Without a Corresponding OSM Feature: 2  (2.6%)
+Note: 'Spatially Proximate, Non-overlapping' (formerly 'Nearby') means an OSM candidate exists within the matching tolerance used by Generate Near Table but the geometries do not coincide/overlap - this is a PROXIMITY relationship, not a coverage/overlap relationship, and is a different concept from the distance-to-nearest-feature statistic in Section 11 (review item #5).
+Note: 'NHA Reference Features Without a Corresponding OSM Feature' in this section means no OSM candidate at all was found within tolerance (the NHA<->OSM direction); this report does not compute the reverse OSM-to-NHA direction (review items #3, #4) - see Section 13(f).
+[Figure 3 - Spatial Correspondence Between NHA Reference Roads and OSM -- saved as PNG/PDF/SVG: D:\Internship\Survey Of Pakistan\Task 1\Python ToolBox\Test 10\charts\Figure_03_NHA_OSM_Spatial_Correspondence.(png|pdf|svg)]
+
+------------------------------------------------------------------------------
+4. GEOMETRIC ALIGNMENT ASSESSMENT
+------------------------------------------------------------------------------
+Tiers require >= 60% of NHA length within tolerance:
+Perfect tolerance: 5 Meters | Slight: 15 Meters | Significant: 50 Meters
+High Alignment (5 m Tier): 4  (5.1%)
+Slight Deviation: 15  (19.2%)
+Significant Deviation: 3  (3.8%)
+Misaligned: 54  (69.2%)
+Not Assessable: 2  (2.6%)
+Note: 'High Alignment (5 m Tier)' (formerly labelled 'Perfect') is a defined tier requiring >=60% of NHA length within 5 m, not a claim of exact geometric identity - up to 40% of a feature's length may fall outside the 5 m tolerance (review item #6). See Section 13 for the rationale behind the 5/15/50 m thresholds.
+
+------------------------------------------------------------------------------
+5. PERFECT MATCH IDENTIFICATION
+------------------------------------------------------------------------------
+Criteria (ALL must hold):
+- Road class agrees with matched OSM feature (Match_Status in Matched/Multiple/Matched (Name Confirmed))
+- Geometric alignment tier is 'Perfect' (>= 60% of NHA length within 5 Meters of OSM geometry)
+High-Confidence Match features: 4 / 78  (5.1%)
+  Of these, backed by exactly 1 corresponding OSM segment (Match_Count = 1): 0; backed by multiple corresponding OSM segments (Match_Count > 1): 4 - multiple-correspondence matches carry more residual matching ambiguity even though they meet the alignment/class criteria above (review item #19).
+Note: renamed from 'Perfect Match' to 'High-Confidence Match' in this report because the criteria establish a defined confidence tier, not mathematical geometric identity (review item #34).
+
+------------------------------------------------------------------------------
+6. ROAD CLASSIFICATION AGREEMENT
+------------------------------------------------------------------------------
+Motorway: 20 total, 16 agree with NHA_Class under the defined OSM crosswalk as OSM Motorway (80.0%)
+National Highway: 58 total, 56 agree with NHA_Class under the defined OSM crosswalk as OSM Trunk/Primary/Motorway (96.6%)
+Motorway mis-matched to National-Highway-tier OSM class (Trunk/Primary): 4
+Note: 'Correctly identified' means the matched OSM Road_Class is in the agreement set defined for that NHA_Class in NHA_OSM_AGREEMENT (Motorway agrees only with OSM Motorway; National Highway agrees with OSM Trunk, Primary, or Motorway). An NHA Motorway matched only to OSM Trunk/Primary is counted as a cross-classification discrepancy, not a correct match, since Trunk/Primary is the expected OSM tier for National Highway, not Motorway.
+Note: these figures are 'NHA-OSM Classification Agreement' under the project's editable NHA_OSM_AGREEMENT crosswalk (Section A.3 of the tool) - i.e. agreement with the NHA reference classification as OSM tags it, NOT an independently verified absolute classification accuracy against ground truth (review item #20). The crosswalk reflects observed OSM tagging practice in Pakistan (motorways consistently tagged 'motorway'; national highways inconsistently split across 'trunk'/'primary') and should be cited as an analytical convention, not an inherent equivalence between the two classification systems (review item #8).
+[Figure 4 - NHA-OSM Road Classification Agreement -- saved as PNG/PDF/SVG: D:\Internship\Survey Of Pakistan\Task 1\Python ToolBox\Test 10\charts\Figure_04_NHA_OSM_Classification_Agreement.(png|pdf|svg)]
+
+------------------------------------------------------------------------------
+7. MISMATCH AND ERROR ANALYSIS
+------------------------------------------------------------------------------
+Uncertain/Ambiguous (Review): 0
+Name/Attribute Mismatch: 2
+Classification Mismatch: 2
+Fragmented Representation (Match_Count > 1): 74
+Spatial/Unmatched: 2
+Severe Mismatch (Likely OSM Data Error): 0
+Note: 'Additional OSM features' (OSM roads with no NHA counterpart) and 'duplicate representations' on the OSM side are not computable from X05_Final_Road_Classification alone, since it is one row per NHA feature. See Requirement 8 (Network Completeness) for the NHA-side completeness figure, which is the mirror-image statistic that IS computable from the current outputs.
+Note: 'Severe Mismatch' here means an NHA Motorway/National Highway matched only to an OSM Residential/Service/Unclassified road (NHA_OSM_SEVERE_MISMATCH) - a zero count reflects that this specific, narrowly-defined condition did not occur, not a general absence of spatial discrepancy. The 54 Misaligned and 58 Nearby-but-non-overlapping features above are real, separately-reported discrepancies of a different kind (positional, not classification) and are not folded into this count.
+Note: 'Classification Mismatch' (road-class disagreement) and 'Spatial/Unmatched' (positional/coverage disagreement) are intentionally kept as independent tally rows above, not combined, since a road can be spatially correct but misclassified, or correctly classified but geometrically misaligned (review item #35).
+
+------------------------------------------------------------------------------
+8. NHA REFERENCE NETWORK COMPLETENESS IN OSM
+------------------------------------------------------------------------------
+Motorway: 20 / 20 represented in OSM (100.0%); 0 NHA reference feature(s) with no corresponding OSM feature identified
+National Highway: 56 / 58 represented in OSM (96.6%); 2 NHA reference feature(s) with no corresponding OSM feature identified
+  NHA reference feature(s) with no corresponding OSM feature under the defined matching criteria: NIIA (Main Link Road) 13.7 km, N-145
+Note: 'represented in OSM' / 'absent' describe the NHA-to-OSM direction only (review item #37) - i.e. whether at least one OSM candidate was found within tolerance for that NHA feature, not a statement that the road itself is missing from the ground or from OSM entirely (it may simply be tagged outside the OSM_RELEVANT_FCLASS pre-filter, or split/mis-tagged).
+
+------------------------------------------------------------------------------
+9. LENGTH-BASED NETWORK COMPARISON
+------------------------------------------------------------------------------
+9a. NHA reference length with OSM spatial coverage (review item #11 - renamed from 'Represented by OSM'):
+  Motorway: NHA total length 2722116.0 Meter; covered 2722116.0 Meter (100.0% of NHA length)
+  National Highway: NHA total length 10118778.1 Meter; covered 10036710.8 Meter (99.2% of NHA length)
+
+9b. Raw summed length of matched OSM segments (review item #12 - reported separately, NOT beside 9a, because the two are not comparable quantities):
+  Motorway: 225407.7 Meter across 19 OSM segments
+  National Highway: 354906.8 Meter across 39 OSM segments
+Note: 9a is the NHA-side length that has at least one OSM candidate within tolerance (a coverage measure). 9b is the raw sum of the individual OSM segment lengths used as matching evidence - since OSM splits roads into many short segments (see Section 10), 9b is a segment-count-driven quantity, not a coverage percentage, and must not be read as '2.7M m of NHA motorway is only represented by 225k m of OSM' (review items #12, #13). Neither figure here resolves overlapping/duplicate OSM segments into a single unique corresponding network length - that would require an additional geometry-dissolve/overlap-resolution step not currently performed (review item #13).
+
+------------------------------------------------------------------------------
+10. OSM FEATURE FRAGMENTATION AND REPRESENTATION
+------------------------------------------------------------------------------
+NHA features matched by exactly 1 OSM segment: 2
+NHA features matched by multiple OSM segments: 74 (97.4% of matched features)
+Average OSM segments per matched NHA feature: 77.05
+Maximum OSM segments for a single NHA feature: 2108
+Overall segment correspondence level: High (renamed from 'fragmentation level' - review item #14)
+Note: a high segment count is EXPECTED OSM editing behaviour (roads are split at intersections, admin boundaries, and attribute changes) and is not itself evidence of duplicate or erroneous OSM geometry. This tool reports segment count only; distinguishing legitimate fragmentation from true overlapping duplicates would require an additional geometry-overlap check between same-road OSM segments, which is not currently computed (see Section 13).
+
+------------------------------------------------------------------------------
+11. SPATIAL ACCURACY AND POSITIONAL DEVIATION
+------------------------------------------------------------------------------
+Tolerance used for % within tolerance: 10 Meters
+Mean distance to nearest OSM feature: 1.4 Meter
+Median distance: 0.0 Meter
+Minimum distance: 0.0 Meter
+Maximum distance: 67.1 Meter
+Features measured: 121
+% within tolerance: 98.3% (119 of 121)
+
+------------------------------------------------------------------------------
+12. OVERALL CLASSIFICATION AND DATA QUALITY ASSESSMENT
+------------------------------------------------------------------------------
+NHA-OSM Classification Agreement Score (formerly 'Classification Accuracy Score' - review item #20): 92.3 / 100
+Spatial Match Score: 23.1 / 100
+Geometric Alignment Score: 24.4 / 100
+Network Completeness Score: 97.4 / 100
+High-Confidence Match Score (formerly 'Perfect Match Score'): 5.1 / 100
+EXPERIMENTAL/INTERNAL COMPOSITE INDEX: 48.5 / 100
+INDEX BAND: Poor
+
+Formula: Overall_Quality_Score = average of 5 equally-weighted sub-scores: Classification Accuracy, Spatial Match, Geometric Alignment, Network Completeness, Perfect Match percentage. See function docstring for exact sub-score definitions.
+Caution: an equal-weighted average of five conceptually different indicators (agreement, overlap, alignment, completeness, high-confidence-match rate) is one possible summary, not a validated, industry-standard composite metric (review item #9); it is labelled here as an experimental/internal index rather than a data-quality rating (review item #10). Treat the five individual scores above, and the underlying Sections 1-11 figures, as the PRIMARY findings of this report; the composite index and its band are a secondary summary only. This dataset combines a high NHA-OSM Classification Agreement Score (92.3%) and Network Completeness Score (97.4%) with low Spatial Match / High-Confidence Match scores that penalise strict 5 m overlap and >=60% coverage thresholds rather than gross positional error - Section 11 shows 98.3% of features within 10 Meters of an OSM feature. See Section 13.
+
+------------------------------------------------------------------------------
+13. METHODOLOGICAL NOTES AND LIMITATIONS
+------------------------------------------------------------------------------
+This section documents known methodological limitations and open items in this report, so results are read with appropriate caution and can be improved in a follow-up pass. It does not change any figure reported above.
+
+a) Reference vs. truth: NHA is used here as the AUTHORITATIVE reference dataset for classification (Final_Class = NHA_Class), but this is a methodological choice, not a claim that NHA is error-free. All figures above measure OSM's agreement WITH NHA, not absolute correctness of either dataset.
+b) Name/route-code matching is supporting evidence only (Section A.3.1 in the tool configuration) and can upgrade a spatial match's status, but a name/ref match is never by itself proof that two features represent the same physical road, and a name mismatch does not by itself prove they do not.
+c) The Perfect Match definition (Section 5) currently combines classification agreement and geometric alignment tier only. It does not separately require positional deviation below a fixed absolute threshold, confirmed route-code identity, or absence of a Match_Count > 1 ambiguity; a stricter definition folding in those factors would very likely produce a lower Perfect Match count than reported.
+d) The 5 / 15 / 50 m alignment tolerances and the 10 m positional tolerance are configured constants (ALIGNMENT_PERFECT_TOLERANCE etc.) chosen as reasonable defaults for this comparison; they are not yet derived from documented NHA/OSM positional accuracy specifications or source mapping scale, and should be justified or re-derived from that source metadata before the tiers are used for formal acceptance/rejection decisions.
+e) The Motorway/National-Highway OSM classification crosswalk (NHA_OSM_AGREEMENT) - i.e. that OSM Trunk or Primary is an acceptable representation of an NHA National Highway - reflects general OSM tagging practice in Pakistan (motorways are consistently tagged 'motorway'; national highways are inconsistently split across 'trunk'/'primary') but is an editable assumption (Section A.3 of the tool) and should be stated as such wherever this report's classification figures are cited.
+f) This report is one-directional (NHA -> OSM). It answers 'how much of the NHA reference network is represented in OSM' (Section 8) but cannot compute how many OSM Motorway/Trunk/Primary features have NO NHA counterpart, or how many are duplicate OSM representations of the same road, because X05_Final_Road_Classification is one row per NHA feature. A complementary OSM-to-NHA pass is needed for a full bidirectional completeness picture.
+g) The OSM comparison universe is the pre-filtered working copy (motorway/motorway_link/trunk/trunk_link/primary/primary_link only, 6899 of the full OSM road dataset), so all OSM-side figures in this report describe agreement within that subset, not the complete OSM road network. Link-road subtypes (motorway_link, trunk_link, primary_link) are currently folded into their parent class (Motorway/Trunk/Primary respectively) rather than tracked as a separate category.
+h) No visual/manual spot-check of matched, mismatched, and unmatched features has been performed as part of this automated run; automated spatial/attribute matching can produce false matches and false non-matches, so a sample review in ArcMap is recommended before the figures above are treated as final.
+i) All statistics above are network-wide totals/percentages and do not break results out by individual route (e.g. per motorway or per national highway) or by geographic area. A route-level and/or map-based breakdown would show whether mismatches are spread evenly or concentrated in specific corridors or regions.
+j) NHA and OSM may have been captured or last edited at different times; this report does not record or account for the acquisition/edit dates of either input layer, so some discrepancies above may reflect legitimate temporal change (e.g. a newly built or realigned road) rather than a data or matching error.
+k) Feature counts and length-based measures are reported separately throughout (e.g. Sections 1, 8 vs 9, 10) deliberately, since OSM's segmentation means a single NHA road can correspond to a large or small number of OSM features independent of how much of its length is actually represented; the two measures should continue to be read side by side, not interchangeably.
+
+==============================================================================
+END OF REPORT
+==============================================================================
